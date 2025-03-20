@@ -15,10 +15,14 @@ vim.keymap.set("n", "<C-q>", "<cmd> w <CR>", opts)
 vim.keymap.set("n", "<leader>sn", "<cmd>noautocmd w <CR>", opts)
 
 -- quit file
--- vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
+vim.keymap.set("n", "<C-x>", "<cmd> q <CR>", opts)
 
 -- delete single character without copying into register
 vim.keymap.set("n", "x", '"_x', opts)
+
+-- Undo and Redo
+vim.keymap.set("i", "<A-z>", "<C-o>u", { noremap = true, silent = true })
+vim.keymap.set("i", "<A-y>", "<C-o><C-r>", { noremap = true, silent = true })
 
 -- Vertical scroll and center
 vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
@@ -28,11 +32,23 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 
+-- Move line up
+vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
+vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+-- Move line down
+vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", { noremap = true, silent = true })
+vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+
+-- Duplicate line without copying to clipboard
+vim.keymap.set("n", "<A-S-Down>", "yyp", { noremap = true, silent = true })
+vim.keymap.set("v", "<A-S-Down>", "ygvP", { noremap = true, silent = true })
+
 -- Resize with arrows
--- vim.keymap.set('n', '<Up>', ':resize -2<CR>', opts)
--- vim.keymap.set('n', '<Down>', ':resize +2<CR>', opts)
--- vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>', opts)
--- vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', opts)
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Buffers
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
